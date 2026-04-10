@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HMC Inventory</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script type="module">
+            import { getSession } from './js/services/authService.js';
+            const session = await getSession();
+            if (!session) window.location.href = 'index.html';
+        </script>
+    </head>
+    <body>
+        <!-- Dashboard content goes here -->
+        <header>
+            <h1>HMC Inventory Dashboard</h1>
+            <button id="logout-button">Logout</button>
+        </header>
+
+        <!-- Configurator section -->
+        <section class="configurator" id="configurator">
+            <h1>HM Configurator</h1>
+            <div class="configurator-content">
+                <label for="manufacturer">Select Manufacturer:</label>
+                <select id="manufacturer" name="manufacturer">
+                    <!-- Options will be populated dynamically -->
+                    <!-- Ex. Data-->
+                    <option value="CU">Curries</option>
+                    <option value="ST">Steelcraft</option>
+                    <option value="DB">Daybar</option>
+                    <option value="VI">Vision</option>
+                    <option value="DK">DKS</option>
+                </select>
+                <label for="gauge">Select Gauge:</label>
+                <select id="gauge" name="gauge">
+                    <!-- Options will be populated dynamically -->
+                    <!-- Ex. Data-->
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="18">18</option>
+                </select>
+                <label for="width">Select Width(in):</label>
+                <select id="width" name="width">
+                    <!-- Options will be populated dynamically -->
+                    <!-- Ex. Data-->
+                    <option value="30">30</option>
+                    <option value="34">34</option>
+                    <option value="36">36</option>
+                    <option value="40">40</option>
+                    <option value="60">60</option>
+                </select>
+                <label for="height">Select Height(in):</label>
+                <select id="height" name="height">
+                    <!-- Options will be populated dynamically -->
+                    <!-- Ex. Data-->
+                    <option value="68">68</option>
+                    <option value="70">70</option>
+                    <option value="72">72</option>
+                    <option value="76">76</option>
+                    <option value="80">80</option>
+                </select>
+                <label for="jamb_depth">Select Jamb Depth(in):</label>
+                <select id="jamb_depth" name="jamb_depth">
+                    <!-- Options will be populated dynamically -->
+                    <!-- Ex. Data-->
+                    <option value="475">4-3/4</option>
+                    <option value="487">4-7/8</option>
+                    <option value="500">5</option>
+                    <option value="512">5-1/8</option>
+                    <option value="525">5-1/4</option>
+                    <option value="537">5-3/8</option>
+                    <option value="550">5-1/2</option>
+                    <option value="567">5-5/8</option>
+                    <option value="575">5-3/4</option>
+                    <option value="587">5-7/8</option>
+                    <option value="600">6</option>
+                    <option value="612">6-1/8</option>
+                    <option value="625">6-1/4</option>
+                    <option value="637">6-3/8</option>
+                    <option value="650">6-1/2</option>
+                    <option value="667">6-5/8</option>
+                    <option value="675">6-3/4</option>
+                    <option value="687">6-7/8</option>
+                    <option value="700">7</option>
+                    <option value="712">7-1/8</option>
+                    <option value="725">7-1/4</option>
+                    <option value="737">7-3/8</option>
+                    <option value="750">7-1/2</option>
+                    <option value="767">7-5/8</option>
+                    <option value="775">7-3/4</option>
+                    <option value="787">7-7/8</option>
+                    <option value="800">8</option>
+                    <option value="812">8-1/8</option>
+                    <option value="825">8-1/4</option>
+                    <option value="837">8-3/8</option>
+                    <option value="850">8-1/2</option>
+                    <option value="867">8-5/8</option>
+                    <option value="875">8-3/4</option> 
+                    <option value="887">8-7/8</option>
+                    <option value="900">9</option>
+                    <option value="912">9-1/8</option>
+                    <option value="925">9-1/4</option>
+                    <option value="937">9-3/8</option>
+                    <option value="950">9-1/2</option>
+                    <option value="967">9-5/8</option>
+                    <option value="975">9-3/4</option>
+                    <option value="987">9-7/8</option>
+                    <option value="1000">10</option>
+                    <option value="1012">10-1/8</option>
+                    <option value="1025">10-1/4</option>
+                    <option value="1037">10-3/8</option>
+                    <option value="1050">10-1/2</option>
+                </select>
+                <label for="handing">Select Handing:</label>
+                <select id="handing" name="handing">
+                    <!-- Options will be populated dynamically -->
+                    <!-- Ex. Data-->
+                    <option value="RH">RH</option>
+                    <option value="LH">LH</option>
+                    <option value="RHR">RHR</option>
+                    <option value="LHR">LHR</option>
+                </select>
+                <label for="layout">Select Layout:</label>
+                <select id="layout" name="layout">
+                    <!-- Options will be populated dynamically -->
+                    <!-- Ex. Data-->
+                    <option value="LAUSD">LAUSD</option>
+                    <option value="STD">STD</option>
+                </select>
+            </div>
+            <div class="configurator-output">
+                <button type="submit" id="generateItemButton">Generate Item</button>
+                <div>
+                    <div id="itemNumber">
+                        <label for="itemNumber">Generated Item Number:</label>
+                        <text id="itemNumberConfig"></text>
+                    </div>
+                    <div id="accounting_ID">
+                        <label for="accounting_ID">Generated Accounting ID:</label>
+                        <text id="accounting_id"></text>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script type="module" src="js/controllers/dashboardController.js"></script>
+    </body>
+</html>
