@@ -22,8 +22,3 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
     window.location.href = 'dashboard.html';
 });
-
-document.getElementById('logout-button').addEventListener('click', async () => {
-    await logout();
-    window.location.href = 'index.html';
-});

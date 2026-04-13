@@ -1,10 +1,9 @@
 import { logout } from '../services/authService.js';
-import { generateItem } from '../services/itemService.js';
+import { processItem } from '../services/itemService.js';
 
-document.addEventListener("DOMContentLoaded", () => {
-    document
-        .getElementById("generateItemButton")
-        .addEventListener("click", generateItem);
+document.getElementById('generateItemButton').addEventListener('click', async (event) => {
+    event.preventDefault();
+    await processItem();
 });
     
 document.getElementById('logout-button').addEventListener('click', async () => {

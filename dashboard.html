@@ -27,11 +27,11 @@
                 <select id="manufacturer" name="manufacturer">
                     <!-- Options will be populated dynamically -->
                     <!-- Ex. Data-->
-                    <option value="CU">Curries</option>
-                    <option value="ST">Steelcraft</option>
-                    <option value="DB">Daybar</option>
-                    <option value="VI">Vision</option>
-                    <option value="DK">DKS</option>
+                    <option value="curries">Curries</option>
+                    <option value="steelcraft">Steelcraft</option>
+                    <option value="daybar">Daybar</option>
+                    <option value="vision">Vision</option>
+                    <option value="dks">DKS</option>
                 </select>
                 <label for="gauge">Select Gauge:</label>
                 <select id="gauge" name="gauge">
@@ -131,15 +131,15 @@
                 </select>
             </div>
             <div class="configurator-output">
-                <button type="submit" id="generateItemButton">Generate Item</button>
+                <button id="generateItemButton">Generate Item</button>
                 <div>
                     <div id="itemNumber">
                         <label for="itemNumber">Generated Item Number:</label>
-                        <text id="itemNumberConfig"></text>
+                        <span id="itemNumberConfig"></span>
                     </div>
                     <div id="accounting_ID">
                         <label for="accounting_ID">Generated Accounting ID:</label>
-                        <text id="accounting_id"></text>
+                        <span id="accountingId"></span>
                     </div>
                 </div>
             </div>
