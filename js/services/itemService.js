@@ -103,6 +103,8 @@ export async function getAccountingId(itemNumber) {
 function displayAccountingId(itemNumber, accountingId) {
     document.getElementById("itemNumberConfig").innerText = itemNumber;
     document.getElementById("accountingId").innerText = accountingId;
+    document.getElementById("manu_output").innerText = document.getElementById("manufacturer").value.toUpperCase();
+    document.getElementById("desc_output").innerText = "HMF";
 }
 
 export async function processItem(){
